@@ -1,11 +1,11 @@
-
-
-
 <table class="league">
 		<h3>Rankings</h3>
 		<tr>
 			<th>Name</th>
 			<th>Played</th>
+			<th>Won</th>
+			<th>Lost</th>
+			<th>Drew</th>
 			<th>Ranking Score</th>
 		</tr>
 
@@ -13,22 +13,45 @@
 
 			User.all.each do |p| 
 				name = p[:name]
-				played = games_played(p[:id])
+				#played = games_played(p[:id])
+
+				matches = all_player_matches(p)
+				matches_played = matches.count
+				won = 0
+				lost = 0 
+				drawn = 0
+				matches.each do |q|
+
+				result = match_result(q,p.id)	
+
+				if result.to_s == "won"
+					won = won + 1
+				elsif result.to_s == "lost"
+					lost = lost + 1
+				else 
+					drawn = drawn +1
+				end
+			end
+
+
 				if Ranking.where(:user_id => (p[:id])).blank?
 					score = 1000
 				else
 					score = Ranking.where(:user_id => (p[:id])).last.score
 				end
-				rankings << { :Name => name, :Played => played, :Score => score}
+				rankings << { :Name => name, :Played => matches_played, :Won => won, :Lost => lost, :Drew => drawn, :Score => score}
 #				Rankings["Name" => name, "Played" => played, "Score" => score]
 #				Rankings{name,played,score}
 			end	
 
-			bleht = rankings.sort_by{ |position| position[:Score] }.reverse
- 			bleht.each do |p| %>
+			sorted_rankings = rankings.sort_by{ |position| position[:Score] }.reverse
+ 			sorted_rankings.each do |p| %>
 			<tr>
 				<td><%= p[:Name] %></td>
 				<td><%= p[:Played] %></td>
+				<td><%= p[:Won] %></td>
+				<td><%= p[:Lost] %></td>
+				<td><%= p[:Drew] %></td>
 				<td><%= p[:Score] %></td> 
 			</tr>
 			<% end %>

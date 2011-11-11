@@ -15,7 +15,19 @@ module ApplicationHelper
   end
  end 
 
+ # Get the matches a player has played in a season
+ def all_player_matches(player)
+   result = Match.joins(:results).where(:results => {:user_id => player})
+   @player_matches = Array.new
+   result.each do |m|
+     @player_matches << m.id
+   end
+   return @player_matches
+ end
 end
+
+
+
 
 def match_result(match,player)
   scores = Result.where(:match_id => match)
