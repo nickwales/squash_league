@@ -1,0 +1,25 @@
+<h1>Listing seasons</h1>
+
+<table>
+  <tr>
+    <th>Start date</th>
+    <th>End date</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @seasons.each do |season| %>
+  <tr>
+    <td><%= season.start_date %></td>
+    <td><%= season.end_date %></td>
+    <td><%= link_to 'Show', season %></td>
+    <td><%= link_to 'Edit', edit_season_path(season) %></td>
+    <td><%= link_to 'Destroy', season, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Season', new_season_path %>

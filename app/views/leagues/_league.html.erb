@@ -1,0 +1,12 @@
+<tr>
+  <td class="results">
+	<% 
+	points = Result.where("user_id = 1").sum("score")
+	
+	<span class="content"><%= points %></li></span>
+	<% end %>
+    <span class="timestamp">
+ 
+    </span>
+  </td>
+</tr>

@@ -1,0 +1,36 @@
+
+
+
+<table class="league">
+		<h3>Rankings</h3>
+		<tr>
+			<th>Name</th>
+			<th>Played</th>
+			<th>Ranking Score</th>
+		</tr>
+
+		<%	 rankings = Array.new
+
+			User.all.each do |p| 
+				name = p[:name]
+				played = games_played(p[:id])
+				if Ranking.where(:user_id => (p[:id])).blank?
+					score = 1000
+				else
+					score = Ranking.where(:user_id => (p[:id])).last.score
+				end
+				rankings << { :Name => name, :Played => played, :Score => score}
+#				Rankings["Name" => name, "Played" => played, "Score" => score]
+#				Rankings{name,played,score}
+			end	
+
+			bleht = rankings.sort_by{ |position| position[:Score] }.reverse
+ 			bleht.each do |p| %>
+			<tr>
+				<td><%= p[:Name] %></td>
+				<td><%= p[:Played] %></td>
+				<td><%= p[:Score] %></td> 
+			</tr>
+			<% end %>
+
+		</table>

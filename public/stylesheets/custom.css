@@ -1,0 +1,542 @@
+body {
+  background: #98BDC6;
+}
+
+.toolbar {
+	height: 55px;
+	width: 100%;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-bottom: 10px;
+	background: #222;
+	color: #D3D3D3;
+	padding: 0px;
+	font-face: 'Arial';
+	font-size: 13px;
+}
+
+.toolbar_left {
+  position:absolute;
+  float: left;
+  margin-left:25px;
+  margin-top:13px;
+  z-index:1000;
+}
+.toolbar_right {
+  position:absolute;
+  z-index: 999;
+  float: right;
+  margin-right:0px;
+  margin-top:15px;
+  text-align:right;
+  right:0px;
+
+}
+
+#navigation ul{
+	display: inline;
+	list-style: none;  
+	background: #black;  
+	overflow: hidden;  
+ 
+}
+
+#navigation li a:link, #navigation li a:visited {  
+    text-decoration: none;  
+    display: block;   
+    color: #fff;   
+    padding: 0 9px 0 9px;  
+    border-right: solid 1px #5E5E5E;  
+    font-family: Arial, Helvetica, sans-serif;  
+    font-size: 12px; 
+ 
+}
+
+#navigation li a:hover {  
+      color: #5E5E5E;  
+}
+
+#navigation li.first {  
+    border-left: solid 1px #ca0002;  
+}
+
+header img {
+  padding: 1em;
+  background: #fff;
+}
+
+
+.container {
+  width: 1210px;
+  background: #98BDC6;
+  padding-top: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.logo {
+	width: 350px;
+	height: 80px;
+	background-image:url('/images/wimbledonsquash_logo.png');
+	background-repeat:no-repeat;
+}
+
+.content_border {
+	float: left;
+	width:720px;
+	padding-left: 9px;
+	padding-right: 15px;
+	padding-bottom: 9px;
+	padding-top: 9px;	
+	background: #6AA1AF;
+	border-left: solid 1px #377A8B;
+	border-right: solid 1px #377A8B;
+	border-bottom: solid 1px #377A8B;
+	border-top: solid 1px #377A8B;
+	overflow:auto;
+	margin-right: 60px;
+}	
+
+.content {
+	width: 700px;
+	float: left;
+	margin-left: 0px;
+	padding: 9px;
+	padding-right: 14px;
+	background: white;
+	border-left: solid 1px #377A8B;
+	border-right: solid 1px #377A8B;
+	border-bottom: solid 1px #377A8B;
+	border-top: solid 1px #377A8B;
+}
+
+.sidebar {
+	padding-top: 0px;
+	width: 300px;
+	float:left;
+	margin-right: 20px;
+	margin-left: 20px;
+}
+
+.patch {
+	width: 300px;
+	margin-right: 20px;
+	background: white;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-bottom: 0px;
+	padding-top: 10px;
+	margin-bottom:9px;
+	border: solid 1px #377A8B;	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border-top-left-radius: 5px 5px;
+	border-top-right-radius: 5px 5px;
+	border-bottom-right-radius: 5px 5px;
+	border-bottom-left-radius: 5px 5px;
+}
+
+.patch_header {
+	color: #3E3535;
+	font-size: 10pt;
+	font-weight: bold;
+	font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.twitter {
+	border-top: 1px solid #377A8B;
+}
+.tweeter {
+	color: #029ACF;
+	font-size: 8pt;
+	font-weight: bold;
+	font-family: Arial;
+}
+
+
+a.signup_button {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 190px;
+  color: #fff;
+  background: #006400;
+  font-size: 150%;
+  font-weight: bold;
+  padding: 20px;
+}
+
+.blog_date {
+	margin-right: 10px;
+	float:left;	
+	background: #DAD3B7;
+	color: #827E6A;
+	font-size: 11px;
+	font-weight: bold;
+	padding: 5px 15px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border-top-left-radius: 5px 5px;
+	border-top-right-radius: 5px 5px;
+	border-bottom-right-radius: 5px 5px;
+	border-bottom-left-radius: 5px 5px;
+	}
+
+blog_contents{
+	float: left;
+	width: 250px;
+	margin-left: 10px;
+	font-face: Arial;
+	font-size: 15px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 10px;
+  width: 710px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer nav {
+  float: none;
+}
+
+table.profile {
+  width: 50%;
+  margin-bottom: 0;
+}
+
+td.main {
+  width: 50%;
+  padding: 1em;
+}
+
+td.sidebar {
+  width: 10%;
+  padding: 1em;
+  vertical-align: top;
+  background: #ffc;
+}
+
+.profile img.gravatar {
+  border: 1px solid #999;
+  margin-bottom: -15px;
+}
+
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+.field_with_errors {
+  margin-top: 10px;
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+.field_with_errors label {
+  color: #fff;
+}
+
+#error_explanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+ul.users {
+  margin-top: 1em;
+}
+
+.users li {
+  list-style: none;
+}
+
+table.league {
+	width: 600px;
+}
+table.league th {
+	color: black;
+	align: center;
+}
+
+table.league td {
+	color: black;
+	align: center;
+}
+
+league a {
+	
+}
+
+h1.result {
+  margin-bottom: 0.3em;
+}
+
+table.results {
+  margin-top: 1em;
+}
+
+table.results tr {
+  height: 70px;
+}
+
+table.results tr td.gravatar {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  width: 50px;
+}
+
+table.results tr td.result {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  padding-top: 10px;
+}
+
+table.results tr td.result span.timestamp {
+  display: block;
+  font-size: 85%;
+  color: #fffff;
+}
+
+div.user_info img {
+  padding-right: 0.1em;
+}
+
+div.user_info a {
+  text-decoration: none;
+}
+
+div.user_info span.user_name {
+  position: absolute;
+}
+
+div.user_info span.results {
+  font-size: 80%;
+}
+
+form.new_result {
+  margin-bottom: 2em;
+}
+
+form.new_result textarea {
+  height: 4em;
+  margin-bottom: 0;
+}
+
+.blog_title {
+	font-face: 'PT Sans', arial, serif;
+	font-size: 20px;
+	color: black;
+	text-decoration: none;
+}
+
+.blog_title a {
+	text-decoration: none;
+	color: black;
+}
+
+.blog_title a:visited {
+	text-decoration: none;
+	color: black;
+}
+
+.blog_title a:hover {
+	text-decoration: none;
+	color: black;
+}
+
+.blog_read_more {
+	font-face: 'PT Sans', arial, serif;
+	font-size: 15px;
+	color: black;
+	text-decoration: none;
+}
+.blog_read_more a {
+	text-decoration: none;
+	color: black;
+}
+
+.blog_read_more a:visited {
+	text-decoration: none;
+	color: black;
+}
+
+.blog_read_more a:hover {
+	text-decoration: underline;
+	color: black;
+}
+.blog_read_more a:active {
+	text-decoration: underline;
+	color: black;
+}
+
+
+.blog_author {
+	font-face: arial;
+	font-size: 10px;
+}
+
+.blog_style{
+	font-face: Arial;
+	font-size: 15px;
+}
+
+.results_box {
+	font-face:'PT Sans', arial, serif;
+	font-size: 14px;
+}
+
+table.results_box {
+	border-width: 0px;
+	border-spacing: 3px;
+	background-color: white;
+
+}
+table.results_box th {
+	padding: 0px;
+	font: bold 11px "PT Sans", Verdana, Arial, Helvetica, sans-serif;	
+	border-right: 1px solid white;
+	border-bottom: 1px solid white;
+	border-top: 1px solid white;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-align: left;
+	padding: 6px 6px 6px 12px;
+
+
+}
+table.results_box td {
+	border-right: 1px solid white;
+	border-bottom: 1px solid white;
+	padding: 2px;
+	background-color: white;
+	-moz-border-radius: ;
+}
+
+mainnav {
+  background-color: black;
+  padding: 0 0.7em;
+  white-space: nowrap;
+}
+
+mainnav ul {
+  margin: 0;
+  padding: 0;
+}
+
+mainnav ul li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 0.2em 0;
+}
+
+mainnav ul li a {
+  padding: 0 5px;
+  font-weight: normal;
+  color: #D3D3D3;
+  text-decoration: none;
+}
+
+mainnav ul li a:visited {
+  color: #D3D3D3;
+  text-decoration: none;
+}
+
+mainnav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Droplicous code, change to your liking */
+#nav ul.licious{
+	list-style: none; 
+	text-align:left;
+	width:80px;
+	font-size:.8em;
+	background:#444;
+	margin:0;
+	padding:0;
+	position:absolute;
+	left:0px;
+	top:28px;
+	opacity:.97;
+	filter:alpha(opacity=97);
+}
+
+/* ie bs */
+html>body #nav ul.licious{
+	position:absolute;	
+	top:18px;
+}
+#nav ul.licious a:hover{
+	
+	position:relative;
+	color:#0A82D0;
+	background:none;
+}
+#nav ul.licious a{
+	position:relative;
+	z-index:999;
+	font-weight:normal;
+	margin:0;
+	padding:5px 0 5px 10px;
+	background:none;
+	color:white;
+	display:block;
+}
+#nav li a:hover{
+	color:#0A82D0;
+}
+#nav li a{
+	font-weight:normal;
+	text-decoration:none;
+	color:#D3D3D3;
+	padding:10px 10px 0 10px;
+	background:#222;
+	text-shadow:none;
+}
+#nav{
+	position:relative;
+	width:700px;
+	list-style:none;
+	margin:0 auto;
+	padding:0;
+	list-style:none;
+	font-size:1em;
+}
+#nav li{
+ 	position:relative;
+ 	display:inline;
+	margin:0;
+	padding:0;
+}

@@ -1,0 +1,27 @@
+<%= form_for(@playerdiv) do |f| %>
+  <% if @playerdiv.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@playerdiv.errors.count, "error") %> prohibited this playerdiv from being saved:</h2>
+
+      <ul>
+      <% @playerdiv.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :division_id %><br />
+    <%= f.select :division_id,  options_for_select(Division.find(:all, :conditions => { :season_id => current_season() }).map{ |x| [ x.name, x.id ]}) %>
+
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+
+	<%= f.select :user_id,  options_for_select(User.find(:all, :order => "name").map{ |x| [ x.name, x.id ]}) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

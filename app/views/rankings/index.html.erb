@@ -1,0 +1,27 @@
+<h1>Listing rankings</h1>
+
+<table>
+  <tr>
+    <th>Score</th>
+    <th>User</th>
+    <th>Match</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @rankings.each do |ranking| %>
+  <tr>
+    <td><%= ranking.score %></td>
+    <td><%= ranking.user_id %></td>
+    <td><%= ranking.match_id %></td>
+    <td><%= link_to 'Show', ranking %></td>
+    <td><%= link_to 'Edit', edit_ranking_path(ranking) %></td>
+    <td><%= link_to 'Destroy', ranking, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Ranking', new_ranking_path %>

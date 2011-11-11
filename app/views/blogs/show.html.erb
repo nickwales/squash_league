@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p class="results_box">
+  <strong><%= @blog.title %></strong>
+</p>
+
+
+<p class="results_box">
+  <%=raw @blog.summary %>
+</p>
+
+<p class="results_box">
+
+  <%= @blog.contents.html_safe %>
+</p>
+
+
+<% if ((signed_in?) && (current_user.admin?)) %>
+
+<%= link_to 'Edit', edit_blog_path(@blog) %> 
+<% end %>
+<%= link_to 'Back', blogs_path %>

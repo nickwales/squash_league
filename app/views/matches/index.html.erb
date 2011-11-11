@@ -1,0 +1,36 @@
+<h1>Listing matches</h1>
+<%= will_paginate %>
+<table>
+  <tr>
+    <th>Player 1</th>
+    <th>Score</th>
+    <th>Score</th>
+    <th>Player 2</th>
+  </tr>
+
+
+<%
+m = Match.all.paginate(:page => params[:page])
+m.each do |match|
+	j = match.id
+	r = Result.where(:match_id => j)
+%>
+
+
+
+  <tr>
+    <td><%= user_by_id(r[0][:user_id]).name %></td>
+    <td><%= r[0][:score] %></td>
+    <td><%= r[1][:score] %></td>
+    <td><%= user_by_id(r[1][:user_id]).name %></td>
+    <td><%= link_to 'Show', match %></td>
+    <td><%= link_to 'Edit', edit_match_path(match) %></td>
+    <td><%= link_to 'Destroy', match, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate %>
+<br />
+
+<%= link_to 'New Match', new_match_path %>

@@ -1,0 +1,30 @@
+<table width=200>
+		
+		<tr>
+			<td>Name</td>
+			<td>Score</td>
+			<td>Score</td>
+			<td>Name</td>
+		</tr>
+<% 
+a = division_ids(1) 
+first = @divs.first 
+last = @divs.last
+range = first..last
+
+# Result.joins(:match => :playerdiv).where(:playerdivs => {:division_id => range}).each do |r|
+
+matches = get_matches(range) %>
+
+<% @match_ids.each do |n|
+ result_one = get_first_result(n)
+ result_two = get_second_result(n) 
+%>
+<tr>
+	<td><% name = user_name(result_one[:user_id]) %><%= name[:name]%></td>
+	<td><%= result_one[:score] %></td>
+	<td><%= result_two[:score] %></td>
+	<td><% name = user_name(result_two[:user_id]) %><%= name[:name]%></td>
+</tr>
+<% end %>
+</table>

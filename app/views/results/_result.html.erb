@@ -1,0 +1,11 @@
+<tr>
+  <td class="results">
+	<% results = Result.where("match_id = 1") 
+	for blah in results %>
+	<span class="content"><%= blah.user_id %><%= blah.score %></li></span>
+	<% end %>
+    <span class="timestamp">
+ 
+    </span>
+  </td>
+</tr>

@@ -1,0 +1,20 @@
+<h2>Welcome to the WRFC squash leagues.</h2>
+
+<h4>Recent News & Events</h4>
+
+<% @blogs.reverse_each do |blog| %>
+
+	<div class="blog_date"><%= blog.created_at.strftime("%d %b '%y") %></div>
+	<div id="blog_contents"><p><%= link_to blog.title, blog, :class => 'blog_title' %> - <span class="blog_author"><%= user_by_id(blog.author).name %></span></p></div>
+	<p><span class="blog_style"><%=raw blog.summary %></span></p>
+<% if blog.contents? %>
+	<p><%= link_to 'Read More', blog, :class => 'blog_read_more'%></p>
+<% end 
+end%>
+
+
+
+
+<br />
+
+<%# link_to 'New Blog', new_blog_path %>

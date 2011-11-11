@@ -1,0 +1,92 @@
+<% current_playerdiv = get_playerdiv_by_id(params[:id]) %>
+
+<table>
+	<tr>
+		<td><%= gravatar_for @user %></td>
+		<td><%= @user.name %> <% if params[:id] == current_user.id.to_s %> &nbsp; <%= link_to "edit your details", edit_user_path %><% end %></td>
+	</tr>
+	<% if params[:id] == current_user.id.to_s %>
+	<tr>
+		<td></td>
+		
+		<td><%= link_to "Add a result", :controller => 'matches', :action => 'new' %></td>	
+				
+	</tr>
+	<% end %>
+	<tr>
+		<td>Email</td>
+		<td><%= @user.email %></td>
+	</tr>
+	<tr>
+		<td>Mobile</td>
+		<td><%= @user.mobile %></td>
+	</tr>
+	<tr>
+		<td>Twitter</td>
+		<td><% if @user.twitter.blank? %>
+				<%= link_to 'Enter your twitter address to receive updates', edit_user_path(@user) %>
+			<% else %>
+				<%= @user.twitter %></td>
+			<% end %>
+		</td>
+	</tr>
+</table>
+
+
+<% current_playerdiv = get_playerdiv_by_id(params[:id]) %>
+<% if !current_playerdiv.blank? %>
+
+<strong>Current Opponents:</strong>
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Mobile</th>
+	</tr>
+			
+<% players = User.joins(:playerdivs).where(:playerdivs => { :division_id => current_playerdiv.last.division_id }).where("users.id != ?", params[:id]) 
+
+players.each do |player| %>
+	<tr>
+		<td><%= link_to player.name, :controller => 'users', :action => 'show', :id => player.id %></td>
+		<td><%= mail_to player.email %></td>
+		<td><%= player.mobile %></td>
+	</tr>
+<% end %>
+	</table>
+	
+
+<% end %>
+		<p><strong>Recent Results</strong></p>
+		<% 	results = show_users_matches(30) %>
+		
+		        <table summary="User results">
+				<tr>
+					<td>P1</td>
+					<td>Score</td>
+					<td>Score</td>
+					<td>P2</td>
+				</tr>
+				
+			<% results.each do |r| %>			
+				<tr>
+					<td><%= User.find(r[0][:user_id]).name %>
+					<td><%= r[0][:score]%>
+					<td><%= r[1][:score]%>
+					<td><%= User.find(r[1][:user_id]).name %>
+		        </tr>
+				
+		<% end %>
+		</table>
+      </h1>
+
+		<% if ((current_user.admin?) && (params[:id] == current_user.id.to_s)) %>
+		<p>
+		<h4>Admin Functions</h4>
+		<%= link_to "Edit a result", :controller => 'matches', :action => 'index' %><br />
+		<%= link_to "Edit a league", :controller => 'playerdivs', :action => 'index' %><br />
+		<%= link_to "Edit a player", :controller => 'users', :action => 'index' %><br />
+		<%= link_to "Create a new season", :controller => 'seasons', :action => 'index' %><br />
+		<%= link_to "Create a new division", :controller => 'divisions', :action => 'index' %><br />
+		</p>
+		<% end %>

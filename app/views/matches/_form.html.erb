@@ -1,0 +1,43 @@
+<%= form_for @match do |f| %>
+  <% if @match.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@match.errors.count, "error") %> prohibited this match from being saved:</h2>
+
+      <ul>
+      <% @match.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+<!-- Get the division_id for current logged in user -->
+  	<% current_playerdiv = get_playerdiv 
+	result = Result.joins(:match).where(:results => {:match_id => params[:id]})%>
+    <%= f.hidden_field :playerdiv_id, :value => Match.find(params[:id]).playerdiv_id %><br />
+	<% playerdiv_players = other_playerdiv_users(current_playerdiv.division_id,current_user.id) %>
+
+	<%= f.fields_for :results do |result_form| %>
+		<%= result_form.label :Player %><br />
+    	<%= # result_form.text_field :user_id 
+		result_form.select :user_id, options_for_select(playerdiv_players, :selected => result[0]["user_id"]) %><br />
+	<!-- Get the score -->
+		<%= result_form.label :score %><br />
+		<%= result_form.select :score, options_for_select([["0", "0"], ["1", "1"], ["2", "2"], ["3", "3"]], :selected => result[0]["score"]) %><br />
+		<%= result_form.hidden_field :active, :value => 1 %>
+		
+		<%= result_form.label :Player %><br />
+    	<%= # result_form.text_field :user_id 
+		result_form.select :user_id, options_for_select(playerdiv_players, :selected => result[1]["user_id"]) %><br />
+	<!-- Get the score -->
+		<%= result_form.label :score %><br />
+		<%= result_form.select :score, options_for_select([["0", "0"], ["1", "1"], ["2", "2"], ["3", "3"]], :selected => result[1]["score"]) %><br />
+		<%= result_form.hidden_field :active, :value => 1 %>
+		
+	<% end %>
+
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

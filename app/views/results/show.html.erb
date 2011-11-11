@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Match:</b>
+  <%= @result.match_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @result.user_id %>
+</p>
+
+<p>
+  <b>Score:</b>
+  <%= @result.score %>
+</p>
+
+<p>
+  <b>Result:</b>
+  <%= @result.result %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%= @result.active %>
+</p>
+
+<p>
+  <b>Points:</b>
+  <%= @result.points %>
+</p>
+
+
+<%= link_to 'Edit', edit_result_path(@result) %> |
+<%= link_to 'Back', results_path %>

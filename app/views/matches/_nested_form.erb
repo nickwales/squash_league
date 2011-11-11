@@ -1,0 +1,67 @@
+<%= form_for @match do |f| %>
+  <% if @match.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@match.errors.count, "error") %> prohibited this match from being saved:</h2>
+
+      <ul>
+      <% @match.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+<!-- Get the division_id for current loggin in user -->
+  	<% current_playerdiv = get_playerdiv %>
+    <%= f.hidden_field :playerdiv_id, :value => current_playerdiv.division_id %><br />
+	<% playerdiv_players = other_playerdiv_users(current_playerdiv.division_id,current_user.id) %>
+
+	
+<!-- The controller makes this happen twice -->
+	<%= f.fields_for :results do |result_form| %>
+
+	<!-- Get the user -->
+	<%= result_form.label current_user.name %>&nbsp;
+	<%= # result_form.text_field :user_id 
+
+		result_form.hidden_field :user_id, :value => current_user.id %>
+		
+		<%= result_form.select :score, options_for_select([["Game Score", "0"], ["0", "0"], ["1", "1"], ["2", "2"], ["3", "3"],["W/O","-1"]]) %><br />
+
+		<%= result_form.hidden_field :active, :value => 1 %>
+	<% end %>
+	<!-- Rankings for player1 -->
+	<%= f.fields_for :rankings do |ranking_form| %>
+
+		<%= ranking_form.hidden_field :score, :value => Ranking.where(:user_id => current_user.id).last.score %><br />
+		<%= ranking_form.hidden_field :user_id, :value => current_user.id %>
+		<%= ranking_form.hidden_field :match_id, :value => :match_id %>
+	<% end %>
+	vs<br /><br />
+		<%= f.fields_for :results do |result_form| %>
+
+    	<%= #result_form.select :user_id, options_for_select @playerdiv_players
+ result_form.select :user_id, options_for_select(User.joins(:playerdivs).where(:playerdivs => { :division_id => current_playerdiv.division_id }).where("users.id != ?", current_user.id).map{ |x| [ x.name, x.id ]}) %>
+	<!-- Get the score -->
+
+		<%= result_form.select :score, options_for_select([["Game Score", "0"], ["0", "0"], ["1", "1"], ["2", "2"], ["3", "3"],["W/O","-1"]]) %><br />
+
+		<%= result_form.hidden_field :active, :value => 1 %>
+	<% end %>
+<!-- Ranking points for player 2 -->
+	<%= f.fields_for :rankings do |ranking_form| %>
+		
+		<%= ranking_form.hidden_field :score %><br />
+		<%= ranking_form.hidden_field :user_id, :value => :user_id %>
+		<%= ranking_form.hidden_field :match_id, :value => :match_id %>
+	<% end %>
+
+		
+
+
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

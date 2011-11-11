@@ -1,0 +1,63 @@
+
+<%	#Get the divisions for the season, run them through pagination, and loop through them.
+seasons = params[:season]
+unless seasons.blank?
+	divisions = division_ids(seasons)
+	seasons = seasons.to_i
+else 
+	seasons = current_season()
+	divisions = division_ids(seasons)
+end
+
+next_season = seasons + 1
+previous_season = seasons - 1 %>
+
+<h3> Season ending <%= Season.find(seasons).end_date.strftime("%d/%m/%Y") %></h3>
+
+<% if seasons == Season.last.id %>
+        <%= link_to "Previous Season", :controller => "pages", :action => "league", :season => previous_season %>
+<% elsif seasons == 1 %>
+        <%= link_to "Next Season", :controller => "pages", :action => "league", :season => next_season %>
+<% else %>
+        <%= link_to "Previous Season", :controller => "pages", :action => "league", :season => previous_season %>
+        <%= link_to "Next Season", :controller => "pages", :action => "league", :season => next_season %>
+<% end %> 
+
+<br /><br />
+<%
+# Sort them, paginate them. 
+sorted_and_paginated_divisions = divisions.paginate(:page => params[:page], :per_page => 5)
+# Loop through the leagues and tabulate them
+sorted_and_paginated_divisions.each_with_index do |l,index|
+l = show_league(l,1) %>
+
+
+
+<table class="league">
+		<h3><%= @div_name %></h3>
+		<tr>
+			<th>Name</th>
+			<th>Played</th>
+			<th>Won</th>
+			<th>Lost</th>
+			<th>Drew</th>
+			<th>Points</th>
+		</tr>
+
+		<%	l.each do |p| %>
+			<tr>
+				<td><% if signed_in? %><%= link_to p[:Name], :controller => 'users', :action => 'show', :id => p[:id] %><% else %><%= p[:Name] %><% end %></td>
+				<td><%= p[:Played] %></td>
+				<td><%= p[:Won] %></td>
+				<td><%= p[:Lost] %></td>
+				<td><%= p[:Drew] %></td>
+				<td><%= p[:Points] %></td>
+			</tr>
+		<% end %>
+		</table>
+
+
+<% 	end  %>
+
+
+<%= will_paginate sorted_and_paginated_divisions %>
