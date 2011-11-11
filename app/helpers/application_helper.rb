@@ -108,10 +108,10 @@ def current_season()
 
   def twitter_auth()
      Twitter.configure do |config|
-       config.consumer_key = "1XjVDsxhid6RGC2L87iOw"
-       config.consumer_secret = "3D9GIbIEfiKqSMDzHTunAPJ0Cb3jGMpxTGJ5SBKXcZQ"
-       config.oauth_token = "167934744-nQHj7SI2fmR9kKgp0xPgqxKThzo3b8E5Zm57LtXh"
-       config.oauth_token_secret = "w151Vhz4TQ5cMaCGEeJPZyeHfw13X4PgvIek4UXhzk"
+       config.consumer_key = "MmLpCfZryJpziDQrP6v2fA"
+       config.consumer_secret = "r1JnVOv0fqpKWf85PYy7NqIeujLlso7Rz77dMBz0GJM"
+       config.oauth_token = "304956678-t1zBhgd9WPsLt2iPziMtMJUky7N67At8sBJOLVtE"
+       config.oauth_token_secret = "S1Y9hkH9Sx9HOvXHzFDpceX1JyNZjKveaWmUl0QaMQ"
      end
    end
    def tweet_result(player1, player1_score, player2, player2_score)
