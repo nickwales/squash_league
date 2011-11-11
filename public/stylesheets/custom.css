@@ -146,8 +146,13 @@ header img {
 	font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
 
+.patch_style{
+	font-face: 'Helvetica Neue', Arial;
+	font-size: 13px;
+}
+
 .twitter {
-	border-top: 1px solid #377A8B;
+
 }
 .tweeter {
 	color: #029ACF;

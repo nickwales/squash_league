@@ -66,10 +66,7 @@
         <% end %>
         <%= yield %>
       </section>
-      
-      
-      
-      
+
       <%= render 'layouts/footer' %>
       <%= debug(params) if Rails.env.development? %>
       
@@ -82,18 +79,21 @@
 
 		<div class="patch round">
 		<span class="patch_header">Latest Results</span><br>
-		<table class="results_box">
+		<table border="0"> 
 		<%
 		m = Match.all.last(5)
 		m.each do |match|
 			j = match.id
 			r = Result.where(:match_id => j)
 		%>
-		  <tr class="results_box">
-		    <td class="results_box"><%= user_by_id(r[0][:user_id]).name %></span></td>
-		    <td class="results_box"><%= r[0][:score] %></td>
-		    <td class="results_box"><%= r[1][:score] %></td>
-		    <td class="results_box"><%= user_by_id(r[1][:user_id]).name %></td>
+
+			<tr class="patch_style">
+				<td align="left"><%= user_by_id(r[0][:user_id]).name %></td>
+				<td align="left"><%= r[0][:score] %></td>
+				<td align="left"> - </td>
+				<td><%= r[1][:score] %></td>
+				<td><%= user_by_id(r[1][:user_id]).name %></td>
+			</tr>	
 		<% end %>
 		</table>
 		</div>
@@ -101,27 +101,26 @@
 		<div class="patch">
 		<span class="patch_header">Team Matches</span><br>
 			<iframe src="https://www.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=200&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=nickwales.co.uk_fflcvb8r0ojnnkfhoi8h1u2qfo%40group.calendar.google.com&amp;color=%23691426&amp;ctz=Europe%2FLondon" style= "border-width:0" width="300" height="200" frameborder="0" scrolling="no"></iframe>
-
-
 		</div>
+	
 		<div class="patch">
-			
 		<span class="patch_header">Latest Tweets @wimbledonsquash</span><br>
 		<% search = Twitter::Search.new 
 		search.to("wimbledonsquash").per_page(5).each do |r| %>
-			<div class="twitter">
-				<span class="tweeter"><%=	"#{r.from_user}:" %></span><br> <%= "#{r.text}" %>
-			</div>
+		<table border="0">
+
+				<span class="tweeter"><%=	"#{r.from_user}:" %></span><br> <span class="patch_style"><%= "#{r.text}" %></span>
+
 		<% end 
 		search.clear%>
 		</div>
 
 		<div class="patch">
 		<span class="patch_header">Links</span><br>
-		<a href="http://bookings.wimbledonclub.co.uk/Web/Login.aspx">Book a court</a><br />
-		<a href="http://county.leaguemaster.co.uk/">Surrey Cup</a><br />
-		<a href="http://www.surreysra.co.uk/">Surrey SRA</a><br />
-		<a href="http://www.squashsite.co.uk/">Squashsite</a><br />
+		<a class="patch_style" href="http://bookings.wimbledonclub.co.uk/Web/Login.aspx">Book a court</a><br />
+		<a class="patch_style" href="http://county.leaguemaster.co.uk/">Surrey Cup</a><br />
+		<a class="patch_style" href="http://www.surreysra.co.uk/">Surrey SRA</a><br />
+		<a class="patch_style" href="http://www.squashsite.co.uk/">Squashsite</a><br /><br />
 		</div>
 		
 	</div>
