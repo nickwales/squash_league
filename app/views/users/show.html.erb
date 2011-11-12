@@ -54,9 +54,9 @@ players.each do |player| %>
 	</tr>
 <% end %>
 	</table>
-	
-
 <% end %>
+
+<% if !Result.where(:user_id => params[:id]).blank? %>
 		<p><strong>Recent Results</strong></p>
 		<% 	results = show_users_matches(30) %>
 		
@@ -79,7 +79,7 @@ players.each do |player| %>
 		<% end %>
 		</table>
       </h1>
-
+<% end %>
 		<% if ((current_user.admin?) && (params[:id] == current_user.id.to_s)) %>
 		<p>
 		<h4>Admin Functions</h4>
