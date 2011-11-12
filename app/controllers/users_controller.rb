@@ -35,9 +35,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @results = @user.results.paginate(:page => params[:page])
     @title = @user.name
-        
-    @current_playerdiv = Playerdiv.where(:user_id => params[:id]).last 
-		if !@current_playerdiv.division_id.nil? 
+    
+    if Playerdiv.where(:user_id => params[:id]).blank?
+       @current_playerdiv = "none"
+    else 
+      @current_playerdiv = Playerdiv.where(:user_id => params[:id]).last 	
 			@division_number = Division.joins(:playerdivs).where(:playerdivs => {:division_id => @current_playerdiv }).last 
     end
 
