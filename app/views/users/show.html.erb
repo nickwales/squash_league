@@ -1,9 +1,9 @@
 <% current_playerdiv = get_playerdiv_by_id(params[:id]) %>
 
-<table>
+<table class="league">
 	<tr>
 		<td><%= gravatar_for @user %></td>
-		<td><%= @user.name %> <% if params[:id] == current_user.id.to_s %> &nbsp; <%= link_to "edit your details", edit_user_path %><% end %></td>
+		<td font-size="13px"><%= @user.name %> <% if params[:id] == current_user.id.to_s %> &nbsp; <%= link_to "edit your details", edit_user_path %><% end %></td>
 	</tr>
 	<% if params[:id] == current_user.id.to_s %>
 	<tr>
@@ -36,7 +36,7 @@
 <% current_playerdiv = get_playerdiv_by_id(params[:id]) %>
 <% if !current_playerdiv.blank? %>
 
-<strong>Current Opponents:</strong>
+<h4>Current Opponents</h4>
 <table>
 	<tr>
 		<th>Name</th>
@@ -57,7 +57,7 @@ players.each do |player| %>
 <% end %>
 
 <% if !Result.where(:user_id => params[:id]).blank? %>
-		<p><strong>Recent Results</strong></p>
+		<p><h4>Recent Results</h4></p>
 		<% 	results = show_users_matches(30) %>
 		
 		        <table summary="User results">
@@ -90,3 +90,22 @@ players.each do |player| %>
 		<%= link_to "Create a new division", :controller => 'divisions', :action => 'index' %><br />
 		</p>
 		<% end %>
+		
+<h4>Ranking Graph</h4>
+<% 
+rank = Array.new
+Ranking.where(:user_id => params[:id]).each do |r|
+	rank << r.score
+end 
+%>
+<% g = Gruff::Line.new("700x350")
+g.hide_title = true
+g.hide_legend = true
+g.hide_dots = true
+g.data("Score", rank) 
+
+g.write('public/ranking_graph.png')
+%>
+
+<img src="/ranking_graph.png" border="0">
+

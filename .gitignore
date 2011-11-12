@@ -8,3 +8,4 @@ tmp/
 *.log
 .DS_Store
 Gemfile.lock
+public/ranking_graph.png

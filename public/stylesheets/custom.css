@@ -48,7 +48,7 @@ body {
     padding: 0 9px 0 9px;  
     border-right: solid 1px #5E5E5E;  
     font-family: Arial, Helvetica, sans-serif;  
-    font-size: 12px; 
+    font-size: 13px; 
  
 }
 
@@ -262,7 +262,7 @@ div.field, div.actions {
   text-align: left;
   font-weight: bold;
   padding: 5px 5px 5px 15px;
-  font-size: 12px;
+  font-size: 13px;
   margin: -7px;
   background-color: #c00;
   color: #fff;
@@ -275,7 +275,7 @@ div.field, div.actions {
 }
 
 #error_explanation ul li {
-  font-size: 12px;
+  font-size: 13px;
   list-style: square;
 }
 
@@ -288,16 +288,18 @@ ul.users {
 }
 
 table.league {
-	width: 600px;
+	width: 100%;
 }
 table.league th {
 	color: black;
 	align: center;
+    font-size: 13px;
 }
 
 table.league td {
 	color: black;
 	align: center;
+    font-size: 13px;
 }
 
 league a {

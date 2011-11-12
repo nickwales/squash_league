@@ -107,12 +107,13 @@
 		<span class="patch_header">Latest Tweets @wimbledonsquash</span><br>
 		<% search = Twitter::Search.new 
 		search.to("wimbledonsquash").per_page(5).each do |r| %>
-		<table border="0">
+
 
 				<span class="tweeter"><%=	"#{r.from_user}:" %></span><br> <span class="patch_style"><%= "#{r.text}" %></span>
 
 		<% end 
 		search.clear%>
+
 		</div>
 
 		<div class="patch">
