@@ -2,9 +2,10 @@
 
 <table>
   <tr>
-    <th>Score</th>
+    <th>Date</th>
     <th>User</th>
     <th>Match</th>
+    <th>Score</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,9 +13,10 @@
 
 <% @rankings.each do |ranking| %>
   <tr>
-    <td><%= ranking.score %></td>
-    <td><%= ranking.user_id %></td>
+	<td><%= ranking.created_at.strftime("%d %b '%y") if ranking.created_at %>
+    <td><%= User.find(ranking.user_id).name %></td>
     <td><%= ranking.match_id %></td>
+    <td><%= ranking.score %></td>
     <td><%= link_to 'Show', ranking %></td>
     <td><%= link_to 'Edit', edit_ranking_path(ranking) %></td>
     <td><%= link_to 'Destroy', ranking, :confirm => 'Are you sure?', :method => :delete %></td>
