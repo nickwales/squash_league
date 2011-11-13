@@ -9,7 +9,7 @@
 			<th>Ranking Score</th>
 		</tr>
 
-		<%	 rankings = Array.new
+		<% rankings = Array.new
 
 			User.all.each do |p| 
 				name = p[:name]
@@ -39,21 +39,23 @@
 				else
 					score = Ranking.where(:user_id => (p[:id])).last.score
 				end
-				rankings << { :Name => name, :Played => matches_played, :Won => won, :Lost => lost, :Drew => drawn, :Score => score}
-#				Rankings["Name" => name, "Played" => played, "Score" => score]
-#				Rankings{name,played,score}
+				rankings << { :ID => p[:id], :Name => name, :Played => matches_played, :Won => won, :Lost => lost, :Drew => drawn, :Score => score}
+
 			end	
 
 			sorted_rankings = rankings.sort_by{ |position| position[:Score] }.reverse
- 			sorted_rankings.each do |p| %>
+ 			sorted_rankings.each do |p| 
+	
+			if p[:Played] != 0 %>
 			<tr>
-				<td><%= p[:Name] %></td>
+				<td><% if signed_in? %><%= link_to p[:Name], :controller => 'users', :action => 'show', :id => p[:ID] %><% else %><%= p[:Name] %><% end %></td>
 				<td><%= p[:Played] %></td>
 				<td><%= p[:Won] %></td>
 				<td><%= p[:Lost] %></td>
 				<td><%= p[:Drew] %></td>
 				<td><%= p[:Score] %></td> 
 			</tr>
-			<% end %>
+			<% end 
+			end %>
 
 		</table>

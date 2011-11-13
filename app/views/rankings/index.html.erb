@@ -11,7 +11,10 @@
     <th></th>
   </tr>
 
-<% @rankings.each do |ranking| %>
+<% 
+r = Ranking.all.paginate(:page => params[:page])
+r.each do |ranking| 	
+%>
   <tr>
 	<td><%= ranking.created_at.strftime("%d %b '%y") if ranking.created_at %>
     <td><%= User.find(ranking.user_id).name %></td>
