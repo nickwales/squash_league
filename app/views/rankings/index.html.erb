@@ -11,10 +11,11 @@
     <th></th>
   </tr>
 
-<% 
-r = Ranking.all.paginate(:page => params[:page])
-r.each do |ranking| 	
-%>
+<% r = Ranking.all.paginate(:page => params[:page]) %>
+<%= will_paginate r %>
+
+<% r.each do |ranking| %>
+
   <tr>
 	<td><%= ranking.created_at.strftime("%d %b '%y") if ranking.created_at %>
     <td><%= User.find(ranking.user_id).name %></td>
@@ -26,7 +27,7 @@ r.each do |ranking|
   </tr>
 <% end %>
 </table>
-
+<%= will_paginate r %>
 <br />
 
 <%= link_to 'New Ranking', new_ranking_path %>
