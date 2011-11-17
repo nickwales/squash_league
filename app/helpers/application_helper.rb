@@ -82,9 +82,7 @@ def get_playerdiv()
 # Get current playerdiv by id
 def get_playerdiv_by_id(id)
       current_season = current_season()
-      
       playerdiv = Playerdiv.joins(:division).where(:divisions => {:season_id => current_season }).where(:playerdivs => {:user_id => id})
-#      playerdiv = Playerdiv.where(:user_id => id).last
       return playerdiv
     end
 
@@ -105,6 +103,25 @@ def current_season()
   	  end
     end
   end 
+
+def wanker(div_id)
+  playerdivs = Array.new
+  Playerdiv.where(:division_id => div_id).each do |p|
+    playerdivs << p
+  end
+  return playerdivs
+end
+
+def current_divisions()
+  div = Array.new
+  curr_season = current_season()
+  Division.where(:season_id => curr_season).each do |d|
+    div << d.id
+  end
+  return div
+end
+
+
 
   def twitter_auth()
      Twitter.configure do |config|

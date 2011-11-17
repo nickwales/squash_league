@@ -29,6 +29,7 @@ SquashLeague::Application.routes.draw do
   match '/results', :to => 'pages#results'
   match '/ranking', :to => 'pages#rankings'
   match '/league/gold',  :to => 'pages#league?page=2'
+  match '/emails', :to => 'pages#emails'
   
   get "pages/home"
 

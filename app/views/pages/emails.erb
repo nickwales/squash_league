@@ -1,0 +1,31 @@
+<% 
+if ((!signed_in?) or (!current_user.admin?)) 
+	
+else
+%>
+<table width=200>
+		
+		<tr>
+			<th>Divisions</th>
+			<th>Emails</th>
+		</tr>
+<% 
+divisions = current_divisions 
+
+divisions.each do |d|
+	playerdivs = wanker(d) 
+%>
+<tr>
+	<th><%= Division.find(d).name %></th>
+	<td>
+<%	
+	playerdivs.each do |p|		
+%>
+
+<%= User.find(p.user_id).email %>, 
+<% end %>
+</td></tr>
+<% end %>
+
+</table>
+<% end %>
