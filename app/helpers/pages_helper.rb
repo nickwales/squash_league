@@ -131,9 +131,9 @@ module PagesHelper
           points = 3
       elsif score_1[:score] == 0 && score_2[:score] == 0
           points = 2
-      elsif score_1[:score] == 3 && score_2[:score] == -1
+      elsif score_2[:score] == -1
           points = 7
-      elsif score_1[:score] == -1 && score_2[:score] == 3
+      elsif score_1[:score] == -1
           points = 0
       end
     elsif score_2[:user_id] == player
@@ -167,9 +167,9 @@ module PagesHelper
           points = 3
       elsif score_2[:score] == 0 && score_1[:score] == 0
           points = 2
-      elsif score_2[:score] == 3 && score_1[:score] == -1
+      elsif score_1[:score] == -1
           points = 7
-      elsif score_2[:score] == -1 && score_1[:score] == 3
+      elsif score_2[:score] == -1
           points = 0
       end
     end
