@@ -1,10 +1,27 @@
 <p id="notice"><%= notice %></p>
+<%= @result.inspect %>
+<table>
+	<tr>
+		<th>ID</th>
+		<th>Date</th>
+		<th>Player 1</th>
+		<th>Score</th>
+		<th>Player 2</th>
 
-<p>
-  <b>Playerdiv:</b>
-  <%= @match.playerdiv_id %>
-</p>
-
+	</tr>
+	<tr>
+  		<td><%= @match.id %></td>
+  		<td><% if @match.created_at.blank? %>
+				N/A
+			<% else %>
+				<%= @match.created_at.strftime("%d %b '%y") %>
+			<% end %>
+		</td>
+		<td><%= User.find(@result.first["user_id"]).name %>
+  		<td><%= @result.first["score"] %> - <%= @result.last["score"] %></td>
+		<td><%= User.find(@result.last["user_id"]).name %>
+	</tr>
+</table>
 
 <%= link_to 'Edit', edit_match_path(@match) %> |
 <%= link_to 'Back', matches_path %>

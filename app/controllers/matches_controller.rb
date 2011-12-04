@@ -14,6 +14,8 @@ class MatchesController < ApplicationController
   # GET /matches/1.xml
   def show
     @match = Match.find(params[:id])
+    @result = Result.where(:match_id => params[:id])
+
 
     respond_to do |format|
       format.html # show.html.erb
@@ -38,6 +40,8 @@ class MatchesController < ApplicationController
   # GET /matches/1/edit
   def edit
     @match = Match.find(params[:id])
+    @result = Result.where(:match_id => params[:id])
+    0.times { @match.results.build }
   end
 
   # POST /matches
@@ -88,7 +92,7 @@ class MatchesController < ApplicationController
     
     respond_to do |format|
      if @match.save
-       # ResultMailer.result_email(params['match']['rankings_attributes']['0']['user_id'],params['match']['rankings_attributes']['1']['user_id'],params['match']['results_attributes']['0']['score'],params['match']['results_attributes']['1']['score']).deliver
+        ResultMailer.result_email(params['match']['rankings_attributes']['0']['user_id'],params['match']['rankings_attributes']['1']['user_id'],params['match']['results_attributes']['0']['score'],params['match']['results_attributes']['1']['score']).deliver
         format.html { redirect_to(@match, :notice => 'Match was successfully created.') }
  #       format.html { redirect_to(@match, :notice => params['match'].inspect) }
         format.xml  { render :xml => @match, :status => :created, :location => @match }
@@ -104,7 +108,7 @@ class MatchesController < ApplicationController
   # PUT /matches/1.xml
   def update
     @match = Match.find(params[:id])
-
+    @result = Result.where(:match_id => params[:id])
     respond_to do |format|
       if @match.update_attributes(params[:match])
         format.html { redirect_to(@match, :notice => 'Match was successfully updated.') }

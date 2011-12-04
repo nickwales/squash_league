@@ -2,6 +2,7 @@
 <%= will_paginate %>
 <table>
   <tr>
+	<th>Date</th>
     <th>Player 1</th>
     <th>Score</th>
     <th>Score</th>
@@ -19,6 +20,12 @@ m.each do |match|
 
 
   <tr>
+	<td><% if @match.created_at.blank? %>
+			N/A
+		<% else %>
+			<%= @match.created_at.strftime("%d %b '%y") %>
+		<% end %>
+	</td>
     <td><%= user_by_id(r[0][:user_id]).name %></td>
     <td><%= r[0][:score] %></td>
     <td><%= r[1][:score] %></td>

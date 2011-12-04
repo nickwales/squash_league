@@ -35,6 +35,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @results = @user.results.paginate(:page => params[:page])
     @title = @user.name
+#    @match = Match.find(params[:id])
     
     if Playerdiv.where(:user_id => params[:id]).blank?
        @current_playerdiv = "none"

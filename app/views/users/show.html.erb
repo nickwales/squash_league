@@ -62,18 +62,27 @@ players.each do |player| %>
 		
 		        <table summary="User results">
 				<tr>
-					<td>P1</td>
-					<td>Score</td>
-					<td>Score</td>
-					<td>P2</td>
+					<th>Date</th>
+					<th>P1</th>
+					<th>Score</th>
+					<th>Score</th>
+					<th>P2</th>
+					<th> </th>
 				</tr>
 				
 			<% results.each do |r| %>			
-				<tr>
+				<tr>			
+					<td><% if Match.find(r[0][:match_id]).created_at.blank? %>
+							N/A
+						<% else %>
+							<%= Match.find(r[0][:match_id]).created_at.strftime("%d %b '%y") %>
+						<% end %>
+					</td>		
 					<td><%= User.find(r[0][:user_id]).name %>
 					<td><%= r[0][:score]%>
 					<td><%= r[1][:score]%>
 					<td><%= User.find(r[1][:user_id]).name %>
+					<td><%= link_to "Edit", :controller => 'matches', :action => 'edit', :id => r[0][:match_id] %>
 		        </tr>
 				
 		<% end %>
