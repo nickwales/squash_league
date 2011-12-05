@@ -14,15 +14,15 @@
 	</tr>
 	<% end %>
 	<tr>
-		<td>Email</td>
+		<th>Email</th>
 		<td><%= @user.email %></td>
 	</tr>
 	<tr>
-		<td>Mobile</td>
+		<th>Mobile</th>
 		<td><%= @user.mobile %></td>
 	</tr>
 	<tr>
-		<td>Twitter</td>
+		<th>Twitter</th>
 		<td><% if @user.twitter.blank? %>
 				<%= link_to 'Enter your twitter address to receive updates', edit_user_path(@user) %>
 			<% else %>
