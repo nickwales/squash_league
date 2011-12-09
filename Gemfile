@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rmagick', :require => 'RMagick'
 gem 'gruff'
-gem 'twitter'
+gem 'twitter', '1.7.2'
 #gem 'faraday', '0.7.5'
 #gem 'rack-cache', '1.0.3'
 
