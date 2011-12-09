@@ -20,7 +20,7 @@ m.each do |match|
 
 
   <tr>
-	<td><% if @match.created_at.blank? %>
+	<td><% unless @match.created_at.blank? %>
 			N/A
 		<% else %>
 			<%= @match.created_at.strftime("%d %b '%y") %>

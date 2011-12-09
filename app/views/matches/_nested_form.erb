@@ -33,8 +33,11 @@
 	<% end %>
 	<!-- Rankings for player1 -->
 	<%= f.fields_for :rankings do |ranking_form| %>
-
-		<%= ranking_form.hidden_field :score, :value => Ranking.where(:user_id => current_user.id).last.score %><br />
+		<% if Ranking.where(:user_id => current_user.id).last.blank? %>
+			<%= ranking_form.hidden_field :score, :value => 1000 %><br />
+		<% else %>
+			<%= ranking_form.hidden_field :score, :value => Ranking.where(:user_id => current_user.id).last.score %><br />
+		<% end %>
 		<%= ranking_form.hidden_field :user_id, :value => current_user.id %>
 		<%= ranking_form.hidden_field :match_id, :value => :match_id %>
 	<% end %>

@@ -100,7 +100,8 @@ players.each do |player| %>
 		<%= link_to "Create a new division", :controller => 'divisions', :action => 'index' %><br />
 		</p>
 		<% end %>
-		
+
+<% if Ranking.where(:user_id => params[:id]).count > 2 %>	
 <h4>Ranking Graph</h4>
 <% 
 rank = Array.new
@@ -118,4 +119,4 @@ g.write('public/ranking_graph.png')
 %>
 
 <img src="/ranking_graph.png" border="0">
-
+<% end %>
