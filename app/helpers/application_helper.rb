@@ -55,36 +55,36 @@ def match_result(match,player)
 
 # Get players from current playerdiv
 def playerdiv_users(playerdiv)
-      users = Hash.new
-      results = User.joins(:playerdivs).where(:playerdivs => {:division_id => playerdiv})
-      results.each do |r|
-        users[r.name] = r.id
-    end
-    return users
+  users = Hash.new
+  results = User.joins(:playerdivs).where(:playerdivs => {:division_id => playerdiv})
+  results.each do |r|
+    users[r.name] = r.id
   end
+  return users
+end
   
 # Get players from current playerdiv
 def other_playerdiv_users(playerdiv,user_id)
-      users = Hash.new
-      results = User.joins(:playerdivs).where(:playerdivs => {:division_id => playerdiv}).where("users.id != ?", user_id)
-      results.each do |r|
-        users[r.name] = r.id
-    end
-    return users
-  end  
+  users = Hash.new
+  results = User.joins(:playerdivs).where(:playerdivs => {:division_id => playerdiv}).where("users.id != ?", user_id)
+  results.each do |r|
+    users[r.name] = r.id
+  end
+  return users
+end  
 
 # Get current playerdiv by id
 def get_playerdiv()
-      playerdiv = Playerdiv.where(:user_id => current_user).last
-      return playerdiv
-    end
+  playerdiv = Playerdiv.where(:user_id => current_user).last
+  return playerdiv
+end
 
 # Get current playerdiv by id
 def get_playerdiv_by_id(id)
-      current_season = current_season()
-      playerdiv = Playerdiv.joins(:division).where(:divisions => {:season_id => current_season }).where(:playerdivs => {:user_id => id})
-      return playerdiv
-    end
+  current_season = current_season()
+  playerdiv = Playerdiv.joins(:division).where(:divisions => {:season_id => current_season }).where(:playerdivs => {:user_id => id})
+  return playerdiv
+end
 
 
 def user_by_id(id)
