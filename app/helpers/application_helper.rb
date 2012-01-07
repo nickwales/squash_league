@@ -27,8 +27,6 @@ module ApplicationHelper
 end
 
 
-
-
 def match_result(match,player)
   scores = Result.where(:match_id => match)
      score_1 = scores.first
@@ -53,6 +51,7 @@ def match_result(match,player)
       end
     end
 
+##### This section is all about getting the players from the playerdiv 
 # Get players from current playerdiv
 def playerdiv_users(playerdiv)
   users = Hash.new
@@ -62,8 +61,42 @@ def playerdiv_users(playerdiv)
   end
   return users
 end
-  
-# Get players from current playerdiv
+
+
+# Gets everyone apart from the chosen player, and puts it in an array.
+def other_playerdiv_users_array(division,user_id)
+  users = Array.new
+  results = User.joins(:playerdivs).where(:playerdivs => {:division_id => division}).where("users.id != ?", user_id)
+  results.each do |r|
+    users << r.id
+  end
+  return users
+end
+
+## Gets matches from a division
+def get_division_matches_played(division,user_id)
+  #currentDiv = get_playerdiv()
+  matches = Result.joins(:match).where(:matches => {:playerdiv_id => division}).where('user_id != ?', user_id)
+  oppo = Array.new
+  matches.each do |m|
+      oppo << m.user_id
+  end
+  return oppo
+end
+
+def unplayed_playerdiv_users(division,user_id)
+  others = other_playerdiv_users_array(division,user_id)
+  played = get_division_matches_played(division,user_id)
+  unplayed = others - played
+  unplayedWithName = Hash.new
+  unplayed.each do |u|
+    unplayedWithName[user_by_id(u).name] = u
+  end
+  return unplayedWithName
+end
+
+# Get players from current playerdiv, return a hash
+
 def other_playerdiv_users(playerdiv,user_id)
   users = Hash.new
   results = User.joins(:playerdivs).where(:playerdivs => {:division_id => playerdiv}).where("users.id != ?", user_id)
@@ -140,4 +173,14 @@ end
      client = Twitter::Client.new
      # Post a status update
      client.update(tweet)
+   end
+   
+   
+   def played_before(playerdiv,user1,user2)
+    a = (playerdiv.to_s + user1.to_s + user2.to_s)
+    if Match.where(:playerdiv => playerdiv).index == a.to_i
+    return true
+    else 
+    return false
+    end
    end

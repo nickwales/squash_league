@@ -29,22 +29,22 @@
 				elsif result.to_s == "lost"
 					lost = lost + 1
 				else 
-					drawn = drawn +1
+					drawn = drawn + 1
 				end
 			end
 
 
-				if Ranking.where(:user_id => (p[:id])).blank?
+				if Ranking.where(:user_id => p[:id]).blank?
 					score = 1000
 				else
-					score = Ranking.where(:user_id => (p[:id])).last.score
+					score = Ranking.where(:user_id => p[:id]).last.score
 				end
 				rankings << { :ID => p[:id], :Name => name, :Played => matches_played, :Won => won, :Lost => lost, :Drew => drawn, :Score => score}
 
 			end	
-
-			sorted_rankings = rankings.sort_by{ |position| position[:Score] }.reverse
- 			sorted_rankings.each do |p| 
+%><%=			rankings.inspect %><%
+		#	sorted_rankings = rankings.sort_by{ |position| position[:Score] }.reverse
+ 			rankings.each do |p| 
 	
 			if p[:Played] != 0 %>
 			<tr>

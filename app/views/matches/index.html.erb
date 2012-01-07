@@ -20,10 +20,12 @@ m.each do |match|
 
 
   <tr>
-	<td><% unless @match.created_at.blank? %>
+
+	<td><% if match.created_at.blank? %>
+
 			N/A
 		<% else %>
-			<%= @match.created_at.strftime("%d %b '%y") %>
+			<%= match.created_at.strftime("%d %b '%y") %>
 		<% end %>
 	</td>
     <td><%= user_by_id(r[0][:user_id]).name %></td>

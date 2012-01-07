@@ -2,7 +2,6 @@ class MatchesController < ApplicationController
   # GET /matches
   # GET /matches.xml
   def index
-   # @matches = Match.all
     @matches = Match.paginate(:page => params[:page])
     respond_to do |format|
       format.html # index.html.erb
@@ -26,7 +25,9 @@ class MatchesController < ApplicationController
   # GET /matches/new
   # GET /matches/new.xml
   def new
-
+    @unplayed = unplayed_playerdiv_users(95,28)
+    @playerdiv_players = other_playerdiv_users(get_playerdiv.division_id,current_user.id) 
+    @players = 
     @match = Match.new
     1.times { @match.results.build }
     1.times { @match.rankings.build }
@@ -47,9 +48,7 @@ class MatchesController < ApplicationController
   # POST /matches
   # POST /matches.xml
   def create
-
     #We need to edit the params here a bit!
-    
     #Fix users 2s elo user_id, easypeasy.
     params['match']['rankings_attributes']['1']['user_id'] = params['match']['results_attributes']['1']['user_id']
     player1 = params['match']['results_attributes']['0']['user_id']
@@ -57,6 +56,8 @@ class MatchesController < ApplicationController
     player1_score = params['match']['results_attributes']['0']['score']
     player2_score = params['match']['results_attributes']['1']['score']
 
+    params['match']['player1'] = player1
+    params['match']['player2'] = player2
 
     
     #Add new elo scores 
@@ -72,12 +73,6 @@ class MatchesController < ApplicationController
     
 
     @match = Match.new(params[:match])
-    
-
-
-      
-
-    
     respond_to do |format|
      if @match.save
        if RAILS_ENV == "production"
@@ -97,6 +92,7 @@ class MatchesController < ApplicationController
         tweet_result(player1_name,player1_score,player2_name,player2_score)
         ResultMailer.result_email(params['match']['rankings_attributes']['0']['user_id'],params['match']['rankings_attributes']['1']['user_id'],params['match']['results_attributes']['0']['score'],params['match']['results_attributes']['1']['score']).deliver
          end    
+
         format.html { redirect_to(@match, :notice => 'Match was successfully created.') }
         format.xml  { render :xml => @match, :status => :created, :location => @match }      
       else
@@ -129,7 +125,7 @@ class MatchesController < ApplicationController
     @match.destroy
 
     respond_to do |format|
-      format.html { redirect_to(matches_url) }
+      format.html { redirect_to(root_to) }
       format.xml  { head :ok }
     end
   end

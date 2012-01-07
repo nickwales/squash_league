@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110916144308) do
+ActiveRecord::Schema.define(:version => 20120105174932) do
 
   create_table "blogs", :force => true do |t|
     t.string   "title"
@@ -33,6 +33,9 @@ ActiveRecord::Schema.define(:version => 20110916144308) do
     t.integer  "playerdiv_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "index"
+    t.string   "player1"
+    t.string   "player2"
   end
 
   create_table "playerdivs", :force => true do |t|
