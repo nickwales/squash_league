@@ -25,7 +25,8 @@ class MatchesController < ApplicationController
   # GET /matches/new
   # GET /matches/new.xml
   def new
-    @unplayed = unplayed_playerdiv_users(95,28)
+#    @unplayed = unplayed_playerdiv_users(get_playerdiv().id,current_user.id)
+    @unplayed = unplayed_playerdiv_users(get_playerdiv().division_id,current_user.id)
     @playerdiv_players = other_playerdiv_users(get_playerdiv.division_id,current_user.id) 
     @players = 
     @match = Match.new
