@@ -21,6 +21,7 @@ body {
   margin-left:25px;
   margin-top:13px;
   z-index:1000;
+  left: 0px;
 }
 .toolbar_right {
   position:absolute;
