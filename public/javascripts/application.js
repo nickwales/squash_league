@@ -115,3 +115,4 @@ var dropliciousMenu = Class.create({
 document.observe('dom:loaded', function() {
 	new dropliciousMenu();
 })
+

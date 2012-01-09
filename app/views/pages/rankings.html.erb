@@ -42,7 +42,7 @@
 				rankings << { :ID => p[:id], :Name => name, :Played => matches_played, :Won => won, :Lost => lost, :Drew => drawn, :Score => score}
 
 			end	
-%><%=			rankings.inspect %><%
+%><%
 		#	sorted_rankings = rankings.sort_by{ |position| position[:Score] }.reverse
  			rankings.each do |p| 
 	
