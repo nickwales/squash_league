@@ -75,19 +75,36 @@ end
 
 ## Gets matches from a division
 def get_division_matches_played(division,user_id)
-  #currentDiv = get_playerdiv()
-  matches = Result.joins(:match).where(:matches => {:playerdiv_id => division}).where('user_id != ?', user_id)
-  oppo = Array.new
+  #Get the users result from the current division
+  results = Result.joins(:match).where(:matches => {:playerdiv_id => division}).where(:user_id => user_id)
+  matches = Array.new
+  results.each do |r|
+    matches << r.match_id
+  end 
+
+  #Get the opposition names in an active record relation
   matches.each do |m|
-      oppo << m.user_id
+    @oppo_result = Result.where(:match_id => m).where('user_id != ?', user_id)
   end
-  return oppo
+  
+  #Get the user_id out of the relation for each.
+  @opposition = Array.new
+  @oppo_result.each do |o|
+    @opposition << o.user_id
+  end
+
+  return @opposition
+
 end
 
 def unplayed_playerdiv_users(division,user_id)
+  #Get everyone who isn't us
   others = other_playerdiv_users_array(division,user_id)
+  #Get the ones we've played against
   played = get_division_matches_played(division,user_id)
+  #Subtract one from the other
   unplayed = others - played
+  #Put it in a hash and grab the name.
   unplayedWithName = Hash.new
   unplayed.each do |u|
     unplayedWithName[user_by_id(u).name] = u

@@ -56,10 +56,6 @@ class MatchesController < ApplicationController
     player2 = params['match']['results_attributes']['1']['user_id']
     player1_score = params['match']['results_attributes']['0']['score']
     player2_score = params['match']['results_attributes']['1']['score']
-
-    params['match']['player1'] = player1
-    params['match']['player2'] = player2
-
     
     #Add new elo scores 
     if params['match']['results_attributes']['0']['score'] > params['match']['results_attributes']['1']['score']
