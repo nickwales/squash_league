@@ -86,13 +86,16 @@ def get_division_matches_played(division,user_id)
   matches.each do |m|
     @oppo_result = Result.where(:match_id => m).where('user_id != ?', user_id)
   end
-  
+
+    
   #Get the user_id out of the relation for each.
   @opposition = Array.new
-  @oppo_result.each do |o|
-    @opposition << o.user_id
-  end
 
+  unless @oppo_result.blank?
+    @oppo_result.each do |o|
+      @opposition << o.user_id
+    end
+  end
   return @opposition
 
 end
