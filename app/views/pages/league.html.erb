@@ -29,10 +29,17 @@ previous_season = seasons - 1 %>
 sorted_and_paginated_divisions = divisions.paginate(:page => params[:page], :per_page => 5)
 # Loop through the leagues and tabulate them
 sorted_and_paginated_divisions.each_with_index do |l,index|
-l = show_league(l,1) %>
+l = show_league(l) %>
+<%  	@thingy = Array.new
+l.each do |balls| 
 
+    balls.each do |key,value|
+		@thingy << value
+	end
+%>
 
-
+<% end %>
+	<%= @thingy.inspect %>
 <table class="league">
 		<h3><%= @div_name %></h3>
 		<tr>
