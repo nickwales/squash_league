@@ -88,7 +88,8 @@ players.each do |player| %>
 		<% end %>
 		</table>
       </h1>
-<% end %>
+<% end 
+		if @playerDivMatch != "nill" %>
 <h4>Current Division Results</h4>
 <table>
 	<tr>
@@ -100,23 +101,26 @@ players.each do |player| %>
 		<th> </th>
 	</tr>
 	<%
-	@playerDivMatch.each do |p|
-	  r = Result.where(:match_id => p.id) %>
-		<tr>
-			<td><% if r[0][:created_at].blank? %>
-					N/A
-				<% else %>
-					<%= r[0][:created_at].strftime("%d %b '%y") %>
-				<% end %>
-			</td>
-			<td><%= user_by_id(r[0][:user_id]).name %></td>
-			<td><%= r[0][:score]%></td>
-			<td><%= r[1][:score]%></td>
-			<td><%= user_by_id(r[1][:user_id]).name %></td>
-		</tr>
-	<%		
+
+		@playerDivMatch.each do |p|
+		  r = Result.where(:match_id => p.id) %>
+			<tr>
+				<td><% if r[0][:created_at].blank? %>
+						N/A
+					<% else %>
+						<%= r[0][:created_at].strftime("%d %b '%y") %>
+					<% end %>
+				</td>
+				<td><%= user_by_id(r[0][:user_id]).name %></td>
+				<td><%= r[0][:score]%></td>
+				<td><%= r[1][:score]%></td>
+				<td><%= user_by_id(r[1][:user_id]).name %></td>
+			</tr>
+		<%		
+		end
 	end
-	%>
+		%>
+		
 </table>
 		<% if ((current_user.admin?) && (params[:id] == current_user.id.to_s)) %>
 		<p>

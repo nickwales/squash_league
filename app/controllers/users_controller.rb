@@ -32,9 +32,15 @@ class UsersController < ApplicationController
   end
 
   def show
-    @currentDiv = Playerdiv.where(:user_id => params[:id]).last
+    if !Playerdiv.where(:user_id => params[:id]).empty?
+      @currentDiv = Playerdiv.where(:user_id => params[:id]).last
+      @playerDivMatch = Match.where(:playerdiv_id => @currentDiv.division_id)
+    else
+      @currentDiv = "nill"
+      @playerDivMatch = "nill"
+    end
     
-    @playerDivMatch = Match.where(:playerdiv_id => @currentDiv.division_id)
+
     @user = User.find(params[:id])
     @results = @user.results.paginate(:page => params[:page])
     @title = @user.name
