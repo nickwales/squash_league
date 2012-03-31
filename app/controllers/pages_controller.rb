@@ -32,20 +32,7 @@ class PagesController < ApplicationController
       @title = "Rankings"
     end
 
-#    l = Array.new
-#    for i in @players
-#      games = Result.joins(:match).where(:matches => {:playerdiv_id => @league}).where(:results => {:user_id => i})
-#      user = User.find(i)
-#      name = user.name
-#      played = games.count
-#      won = games.where(:result => "win").count
-#      lost = games.where(:result => "lost").count
-#      points = games.sum(:points)
-#      l << { :Name => name, :Played => played, :Won => won, :Lost => lost, :Points => points}
-#    end
-      
-#    @sorted_league = l.sort_by { |position| position[:Points] }.reverse!
-      
+    
     @league_players = Playerdiv.joins(:division).where(:divisions => {:season_id => @season})
     
     @players = Result.joins(:match).where(:matches => {:playerdiv_id => 1}).where(:results => {:user_id => (params[:article])})

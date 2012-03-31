@@ -57,10 +57,6 @@ class MatchesController < ApplicationController
     player1_score = params['match']['results_attributes']['0']['score']
     player2_score = params['match']['results_attributes']['1']['score']
 
-    params['match']['player1'] = player1
-    params['match']['player2'] = player2
-
-    
     #Add new elo scores 
     if params['match']['results_attributes']['0']['score'] > params['match']['results_attributes']['1']['score']
       elo_scores = update_elo_score(params['match']['results_attributes']['0']['user_id'],params['match']['results_attributes']['1']['user_id']) 
@@ -90,7 +86,10 @@ class MatchesController < ApplicationController
          else 
            player2_name = ["@",player2_info.twitter].join("")
          end
-        tweet_result(player1_name,player1_score,player2_name,player2_score)
+         
+         if !player1_score == "-1" or !player2_score == "-1"
+           tweet_result(player1_name,player1_score,player2_name,player2_score)
+         end
         ResultMailer.result_email(params['match']['rankings_attributes']['0']['user_id'],params['match']['rankings_attributes']['1']['user_id'],params['match']['results_attributes']['0']['score'],params['match']['results_attributes']['1']['score']).deliver
          end    
 
