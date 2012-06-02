@@ -24,8 +24,8 @@
     <%= f.text_area :contents %>
   </div>
   <div class="field">
-    <%= f.label :author %><br />
-    <%= f.text_field :author %>
+
+    <%= f.hidden_field :author, :value => current_user.id %>
   </div>
   <div class="actions">
     <%= f.submit %>
