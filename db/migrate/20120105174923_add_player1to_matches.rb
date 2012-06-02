@@ -4,5 +4,6 @@ class AddPlayer1toMatches < ActiveRecord::Migration
   end
 
   def self.down
+    remove_column :matches, :player1, :string
   end
 end

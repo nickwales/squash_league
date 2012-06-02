@@ -35,6 +35,7 @@ class SeasonsController < ApplicationController
   # GET /seasons/1/edit
   def edit
     @season = Season.find(params[:id])
+    
   end
 
   # POST /seasons

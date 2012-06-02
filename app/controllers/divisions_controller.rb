@@ -3,7 +3,6 @@ class DivisionsController < ApplicationController
   # GET /divisions.xml
   def index
     @divisions = Division.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @divisions }
@@ -25,7 +24,7 @@ class DivisionsController < ApplicationController
   # GET /divisions/new.xml
   def new
     @division = Division.new
-
+    @seasons = Season.all.reverse
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @division }
@@ -35,6 +34,7 @@ class DivisionsController < ApplicationController
   # GET /divisions/1/edit
   def edit
     @division = Division.find(params[:id])
+    @seasons = Season.all.reverse
   end
 
   # POST /divisions

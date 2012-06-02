@@ -43,8 +43,8 @@
 
 			end	
 %><%
-		#	sorted_rankings = rankings.sort_by{ |position| position[:Score] }.reverse
- 			rankings.each do |p| 
+			sorted_rankings = rankings.sort_by{ |position| position[:Score] }.reverse
+ 			sorted_rankings.each do |p| 
 	
 			if p[:Played] != 0 %>
 			<tr>

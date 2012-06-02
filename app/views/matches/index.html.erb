@@ -9,7 +9,6 @@
     <th>Player 2</th>
   </tr>
 
-
 <%
 m = Match.all.paginate(:page => params[:page])
 m.each do |match|
@@ -17,12 +16,8 @@ m.each do |match|
 	r = Result.where(:match_id => j)
 %>
 
-
-
   <tr>
-
 	<td><% if match.created_at.blank? %>
-
 			N/A
 		<% else %>
 			<%= match.created_at.strftime("%d %b '%y") %>

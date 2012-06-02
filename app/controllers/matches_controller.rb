@@ -77,14 +77,22 @@ class MatchesController < ApplicationController
          if player1_info.twitter.blank?
            player1_name = player1_info.name
          else 
-           player1_name = ["@",player1_info.twitter].join("")
+           if player1_info.twitter.include? "@"
+              player1_name = player1_info.twitter
+            else 
+              player1_name = ["@",player1_info.twitter].join("")
+            end
          end
 
          player2_info = User.find(player2)
          if player2_info.twitter.blank?
            player2_name = player2_info.name
          else 
-           player2_name = ["@",player2_info.twitter].join("")
+           if player2_info.twitter.include? "@"
+             player2_name = player2_info.twitter
+           else 
+             player2_name = ["@",player2_info.twitter].join("")
+           end
          end
          
          if !player1_score == "-1" or !player2_score == "-1"

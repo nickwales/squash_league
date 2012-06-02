@@ -13,7 +13,9 @@
 
   <div class="field">
     <%= f.label :season_id %><br />
-    <%= f.text_field :season_id %>
+	<%= f.select :season_id, options_for_select(@seasons.collect{|m| [m.id, m.id]})%>
+	<%# f.collection_select(:season, :id, @seasons, :id, :id )%>
+    <%# select("id", "id", Season.all.reverse.collect {|p| [ p.id, p.id ] } ) %>
   </div>
   <div class="field">
     <%= f.label :number %><br />

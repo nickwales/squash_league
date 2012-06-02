@@ -19,7 +19,7 @@
 		<td><%= link_to u.name, u %></td>
 		<td><%= mail_to u.email %></td>
 		<td><%= u.mobile %></td>
-		<%= u.twitter %></td>
+		<td><%= u.twitter %></td>
 		<% if current_user.admin? %>
 	    <td><%= link_to 'Edit', edit_user_path(u) %></td>
 	    <td><%= link_to 'Destroy', u, :confirm => 'Are you sure?', :method => :delete %></td>
